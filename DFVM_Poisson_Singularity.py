@@ -221,7 +221,7 @@ class MLP(nn.Module):
     def forward(self, x):
         return self.net(x.to(torch.float32))
 
-def setup_seed(seed):
+def setup_seed(seed):#设置随机数种子
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
@@ -232,6 +232,7 @@ def setup_seed(seed):
 def train_pipeline():
     # define device
     DEVICE = torch.device(f"cuda:{CUDA_ORDER}" if torch.cuda.is_available() else "cpu")
+    #DEVICE = torch.device("cpu")
     print(f"当前启用 {DEVICE}")
     # define equation
     Eq = PoissonEQuation(DIMENSION, EPSILON, BDSIZE, DEVICE)
